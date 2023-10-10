@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,7 @@ class UserSeeder extends Seeder
           'email'=>'admin@gmail.com',
           'password'=>Hash::make('password'),
           'phone_number'=>'09876543210',
+          'store_id'=>Store::inRandomOrder()->first()->id,
        ]);
 
        DB::table('users')->insert([
@@ -27,6 +29,25 @@ class UserSeeder extends Seeder
         'email'=>'hader@gmail.com',
         'password'=>Hash::make('password'),
         'phone_number'=>'09876543211',
+        'store_id'=>Store::inRandomOrder()->first()->id,
        ]);
+
+       User::create([
+        'name'=>'ahmed',
+        'email'=>'ahmed@gmail.com',
+        'password'=>Hash::make('password'),
+        'phone_number'=>'09576543210',
+        'store_id'=>Store::inRandomOrder()->first()->id,
+     ]);
+
+     User::create([
+        'name'=>'nada',
+        'email'=>'nada@gmail.com',
+        'password'=>Hash::make('password'),
+        'phone_number'=>'09676543210',
+        'store_id'=>Store::inRandomOrder()->first()->id,
+     ]);
+
+     
     }
 }
