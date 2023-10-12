@@ -27,12 +27,12 @@
 <table class="table" >
     <thead>
         <tr>
-            <th></th>
-            <th>Image</th>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Parent</th>
             <th>Status</th>
+            <th style="width: 12%;">Products #</th>
             <th>Created At</th>
             <th colspan="2" class="text-center">Action</th>
         </tr>
@@ -41,12 +41,12 @@
 
         @forelse ($categories as $category)
         <tr>
-            <td></td>
-            <td><img src="{{ asset('storage/'.$category->image )}}" height="100" width="100"></td>
             <td>{{ $category->id }}</td>
-            <td>{{ $category->name }}</td>
-            <td>{{ $category->parent->name ?? '--' }}</td>
+            <td><img src="{{ asset('storage/'.$category->image )}}" height="100" width="100"></td>
+            <td><a href="{{route('dashboard.categories.show', $category->id)}}">{{ $category->name }}</a></td>
+            <td>{{ $category->parent->name  }}</td>
             <td>{{ $category->status }}</td>
+            <td>{{ $category->products_count }}</td>
             <td>{{ $category->created_at }}</td>
             <td>
                 <a href="{{route('dashboard.categories.edit',$category->id)}}" class="btn btn-small btn-success">Edit</a>
@@ -60,7 +60,7 @@
             </td>
         </tr>
         @empty
-        <tr><td colspan="7" class="text-center">NO Categories Defiend.</td></tr>
+        <tr><td colspan="9" class="text-center">NO Categories Defiend.</td></tr>
         @endforelse
     </tbody>
 </table>

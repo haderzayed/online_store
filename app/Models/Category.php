@@ -15,7 +15,18 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->hasOne(Category::class, 'id', 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id', 'id')
+                    ->withDefault(['name'=>'--']);
+    }
+     
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 
     public function scopeActive(Builder $builder){

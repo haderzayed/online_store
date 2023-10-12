@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
           'email'=>'admin@gmail.com',
           'password'=>Hash::make('password'),
           'phone_number'=>'09876543210',
-          'store_id'=>Store::inRandomOrder()->first()->id,
        ]);
 
        DB::table('users')->insert([

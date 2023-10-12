@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+ 
 use Illuminate\Http\Request;
+ 
 
 class ProductsController extends Controller
 {
@@ -13,7 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products=Product::paginate();
+        
+        $products=Product::with(['category','store'])->paginate();
         return view('dashboard.product.index', compact('products'));
     }
 
@@ -38,7 +41,7 @@ class ProductsController extends Controller
      */
     public function show(string $id)
     {
-        //
+         
     }
 
     /**
@@ -46,7 +49,7 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product=Product::findOrFail($id);
     }
 
     /**

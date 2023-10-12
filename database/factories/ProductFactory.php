@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             '/uploads/categoories/4.jpg',
            '/uploads/categoories/5.jpg',
        ];
-        $name=$this->faker->words(5,true);
+        $name=$this->faker->productName;
         return [
             'name'=>$name,
             'slug'=>Str::slug($name),

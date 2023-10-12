@@ -18,7 +18,12 @@ class CategoriesController extends Controller
     public function index()
     {
          $request=request();
-         $categories=Category::filter($request->query())
+         $categories=Category::with('parent')
+                               ->withCount(['products' => function($builder){
+                                   $builder->where('status','active');
+                                  }
+                               ])
+                               ->filter($request->query())
                                ->paginate();
         //  $categories=Category::active()->paginate();
         // $categories=Category::status('archived')->paginate();
@@ -60,9 +65,10 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        $products= $category->products()->with('store')->latest()->paginate(10);
+        return view('dashboard.categories.show', compact('category','products'));
     }
 
     /**

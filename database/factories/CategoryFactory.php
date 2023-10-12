@@ -25,7 +25,7 @@ class CategoryFactory extends Factory
             '/uploads/categoories/4.jpg',
             '/uploads/categoories/5.jpg',
        ];
-        $name=$this->faker->words(2,true);
+        $name=$this->faker->department;
         return [
             'name'=>$name,
             'slug'=>Str::slug($name),

@@ -27,9 +27,8 @@
 <table class="table" >
     <thead>
         <tr>
-            <th></th>
-            <th>Image</th>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Category</th>
             <th>Store</th>
@@ -42,9 +41,8 @@
 
         @forelse ($products as $product)
         <tr>
-            <td></td>
-            <td><img src="{{ asset('storage/'.$product->image )}}" height="100" width="100"></td>
             <td>{{ $product->id }}</td>
+            <td><img src="{{ asset('storage/'.$product->image )}}" height="100" width="100"></td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->category->name }}</td>
             <td>{{ $product->store->name}}</td>
