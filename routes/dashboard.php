@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 
@@ -10,7 +11,9 @@ Route::group([
     'as'=>'dashboard.', // before name
     'prefix'=>'dashboard', // before route
 ],function(){
-
+    
+    Route::get('profile',[ProfileController::class,'edit'])->name('profile.edit');
+    Route::patch('profile',[ProfileController::class,'update'])->name('profile.update');
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/categories/trash',[CategoriesController::class,'trash'])->name('categories.trash');
     Route::put('/categories/{category}/restore',[CategoriesController::class,'restore'])->name('categories.restore');
