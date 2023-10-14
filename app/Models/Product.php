@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Category;
 use App\Models\Scopes\StoreScope;
 use App\Models\Store;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,18 +15,19 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable=['id','name','image','description','status','slug','category_id','store_id'];
+    protected $fillable=['id','name','image','description','status','slug','category_id','store_id',
+                           'price','compare_price'];
 
     protected static function booted() //working whene using the model
     {
         static::addGlobalScope('store', new StoreScope());
 
         // static::addGlobalScope('store', function (Builder $builder){
-        //     $user=Auth::user(); 
+        //     $user=Auth::user();
         //     if( $user->store_id){
         //         $builder->where('store_id', $user->store_id);
         //     }
-            
+
         // });
     }
 
@@ -38,4 +40,11 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+
 }
