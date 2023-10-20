@@ -46,8 +46,11 @@
                     <div class="product-info">
                         <h2 class="title">{{ $product->name }}</h2>
                         <p class="category"><i class="lni lni-tag"></i> Category:<a href="javascript:void(0)"> {{ $product->category->name }}</a></p>
-                        <h3 class="price"> {{ Currency::format($product->price) }}<span>${{Currency::format( $product->compare_price )}}</span></h3>
+                        <h3 class="price"> {{ Currency::format($product->price) }} <span> {{Currency::format( $product->compare_price )}}</span></h3>
                         <p class="info-text">{{ $product->description }}.</p>
+                        <form action="{{route('cart.store')}}" method="post" >
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{  $product->id }}" />
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-12">
                                 <div class="form-group color-option">
@@ -83,7 +86,7 @@
                             <div class="col-lg-4 col-md-4 col-12">
                                 <div class="form-group quantity">
                                     <label for="color">Quantity</label>
-                                    <select class="form-control">
+                                    <select name="quantity" class="form-control">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -97,8 +100,9 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="button cart-button">
-                                        <button class="btn" style="width: 100%;">Add to Cart</button>
+                                        <button class="btn" type="submit" style="width: 100%;">Add to Cart</button>
                                     </div>
+                                
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="wish-button">
@@ -110,8 +114,10 @@
                                         <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
+                      </form> 
                     </div>
                 </div>
             </div>
